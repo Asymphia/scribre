@@ -1,21 +1,36 @@
-import StyledLink from "@/components/ui/styled-link";
+import StyledLink from "@/components/ui/styled-link"
 
 interface AuthLinksProps {
-    page: "login" | "signup"
+    page: "login" | "signup" | "reset"
 }
 
 const AuthLinks = ({ page }: AuthLinksProps) => {
+    let link, text, linkText
+
+    switch (page) {
+        case "login":
+            link = "/sign-up"
+            text = "Don't have an account?"
+            linkText = "Sign up!"
+            break
+        case "signup":
+            link = "/login"
+            text = "Already have an account?"
+            linkText = "Log in!"
+            break
+        case "reset":
+            link = "/login"
+            text = "Back to login page?"
+            linkText = "Log in!"
+    }
+
     return (
         <div className="space-y-5">
             <p className="text-center">
-                {
-                    page === "login" ? "Don't have an account?" : "Already have an account?"
-                }
-                 {" "}
-                <StyledLink href={ page === "login" ? "/sign-up" : "/login" }>
-                    {
-                        page === "login" ? "Sign up!" : "Log in!"
-                    }
+                { text }
+                {" "}
+                <StyledLink href={ link }>
+                    { linkText }
                 </StyledLink>
             </p>
 

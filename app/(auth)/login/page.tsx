@@ -1,5 +1,5 @@
 import AuthHeader from "@/components/auth/auth-header"
-import LoginForm from "@/components/auth/login-form"
+import LoginForm from "@/components/auth/forms/login-form"
 import AuthLinks from "@/components/auth/auth-links"
 
 const LoginPage = () => {

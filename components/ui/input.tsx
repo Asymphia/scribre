@@ -25,7 +25,7 @@ const Input = ({ type, placeholder, name, disabled=false }: InputProps) => {
                 placeholder={ placeholder }
                 disabled={ disabled }
                 name={ name }
-                className="py-4 focus:outline-none"
+                className="py-4 w-full focus:outline-none"
             />
         </label>
     )

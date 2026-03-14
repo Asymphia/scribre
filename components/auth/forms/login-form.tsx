@@ -8,7 +8,7 @@ const LoginForm = () => {
             <Input type="text" placeholder="E-mail" name="email" />
             <Input type="password" placeholder="Password" name="password" />
 
-            <StyledLink href="#" className="block w-full text-right">
+            <StyledLink href="/reset-password" className="block w-full text-right">
                 Forgot password?
             </StyledLink>
 
