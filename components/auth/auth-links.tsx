@@ -25,7 +25,7 @@ const AuthLinks = ({ page }: AuthLinksProps) => {
     }
 
     return (
-        <div className="space-y-5">
+        <div className="xl:space-y-5 md:space-y-4 space-y-3">
             <p className="text-center">
                 { text }
                 {" "}
@@ -34,7 +34,7 @@ const AuthLinks = ({ page }: AuthLinksProps) => {
                 </StyledLink>
             </p>
 
-            <div className="flex flex-nowrap justify-center gap-5">
+            <div className="flex flex-nowrap justify-center xl:gap-5 md:gap-4 gap-3">
                 <StyledLink href="#">
                     Privacy Policy
                 </StyledLink>

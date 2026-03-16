@@ -44,8 +44,6 @@
     }
 
     body {
-        font-family: var(--font-source-sans);
-        font-size: 1rem;
-        color: var(--text-color);
+        @apply font-source-sans lg:text-base text-sm text-text-color;
     }
 }

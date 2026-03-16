@@ -8,7 +8,7 @@ const Slider = () => {
     return (
         <section
             style={{ backgroundImage: `url(${backgroundImage.src})` }}
-            className="bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center relative"
+            className="bg-cover bg-center bg-no-repeat flex-col items-center justify-center relative md:flex hidden"
         >
             <div className="rounded-2xl w-3/4 overflow-hidden">
                 <Image src={ panelImage } alt="An image of Scribre's panel" height={540} layout="responsive" />

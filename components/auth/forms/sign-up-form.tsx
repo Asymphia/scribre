@@ -3,8 +3,8 @@ import AuthButton from "@/components/auth/auth-button"
 
 const SignUpForm = () => {
     return (
-        <form className="space-y-5">
-            <div className="flex flex-nowrap gap-5">
+        <form className="xl:space-y-5 md:space-y-4 space-y-3">
+            <div className="flex flex-nowrap xl:gap-5 md:gap-4 gap-3">
                 <Input type="text" placeholder="Name" name="name" />
                 <Input type="text" placeholder="Surname" name="surname" />
             </div>

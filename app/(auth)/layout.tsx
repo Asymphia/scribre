@@ -7,11 +7,11 @@ const AuthLayout = ({ children }: { children: ReactNode }) => {
     const year = new Date().getFullYear()
 
     return (
-        <div className="w-screen h-screen grid grid-cols-2 gap-5">
-            <section className="ml-20 my-8 flex flex-col justify-between">
+        <div className="max-w-screen min-h-screen grid md:grid-cols-2 grid-cols-1 flex-wrap-reverse md:gap-5 gap-0">
+            <section className="xl:mx-20 md:mx-6 mx-4 my-8 flex flex-col justify-between">
                 <Image src={ logoImage } alt="Scribra's logo" height={36} />
 
-                <div className="max-w-140 w-full self-center space-y-14">
+                <div className="2xl:max-w-140 max-w-full w-full self-center xl:space-y-14 md:space-y-12 space-y-10">
                     { children }
                 </div>
 

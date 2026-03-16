@@ -4,7 +4,7 @@ import AuthButton from "@/components/auth/auth-button"
 
 const LoginForm = () => {
     return (
-        <form className="space-y-5">
+        <form className="xl:space-y-5 md:space-y-4 space-y-3">
             <Input type="text" placeholder="E-mail" name="email" />
             <Input type="password" placeholder="Password" name="password" />
 

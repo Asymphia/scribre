@@ -7,7 +7,7 @@ interface AuthButtonProps {
 
 const AuthButton = ({ text }: AuthButtonProps) => {
     return (
-        <Button type="submit" className="flex flex-nowrap gap-3 w-full justify-center items-center group mt-10">
+        <Button type="submit" className="flex flex-nowrap gap-3 w-full justify-center items-center group xl:mt-10 md:mt-8 mt-6">
                 <span className="text-background">
                     { text }
                 </span>

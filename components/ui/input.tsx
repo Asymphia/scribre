@@ -8,7 +8,7 @@ interface InputProps {
 }
 
 const Input = ({ type, placeholder, name, disabled=false }: InputProps) => {
-    const iconClasses = "size-5 text-text-color transition-colors group-focus-within:text-primary!"
+    const iconClasses = "lg:size-5 size-4 text-text-color transition-colors group-focus-within:text-primary!"
 
     let icon
 
@@ -17,7 +17,7 @@ const Input = ({ type, placeholder, name, disabled=false }: InputProps) => {
     else icon = <UserIcon className={ iconClasses } />
 
     return (
-        <label className="group flex flex-nowrap gap-3 items-center px-4 cursor-text bg-foreground w-full rounded-xl border-1 border-solid border-foreground transition-colors hover:border-text-color focus-within:border-primary!">
+        <label className="group flex flex-nowrap gap-3 items-center lg:px-4 px-3 cursor-text bg-foreground w-full rounded-xl border-1 border-solid border-foreground transition-colors hover:border-text-color focus-within:border-primary!">
             { icon }
 
             <input
@@ -25,7 +25,7 @@ const Input = ({ type, placeholder, name, disabled=false }: InputProps) => {
                 placeholder={ placeholder }
                 disabled={ disabled }
                 name={ name }
-                className="py-4 w-full focus:outline-none"
+                className="lg:py-4 py-3 w-full focus:outline-none"
             />
         </label>
     )
