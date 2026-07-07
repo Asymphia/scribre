@@ -1,16 +1,16 @@
 "use client"
 
-import { PencilSquareIcon, CogIcon, ArrowLeftEndOnRectangleIcon } from "@heroicons/react/24/outline"
+import { PencilSquareIcon, CogIcon } from "@heroicons/react/24/outline"
 import logo from "@/assets/logo-colour.svg"
 import Image from "next/image";
 import MenuItem from "@/components/layout/menu-item"
 import CurrentUser from "@/components/layout/current-user"
+import SignOutItem from "@/components/layout/sign-out-item"
 
 const SideMenu = () => {
     const items = [
         { name: "Notes", link: "/dashboard/notes", icon: PencilSquareIcon},
-        { name: "Settings", link: "/dashboard/settings", icon: CogIcon },
-        { name: "Log out", link: "/", icon: ArrowLeftEndOnRectangleIcon}
+        { name: "Settings", link: "/dashboard/settings", icon: CogIcon }
     ]
 
     return (
@@ -24,6 +24,7 @@ const SideMenu = () => {
                             <MenuItem name={ item.name } link={ item.link } Icon={ item.icon } key={ item.link } />
                         ))
                     }
+                    <SignOutItem />
                 </div>
             </div>
 
