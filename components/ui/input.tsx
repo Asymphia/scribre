@@ -1,4 +1,8 @@
+"use client"
+
 import { AtSymbolIcon, HashtagIcon, UserIcon } from "@heroicons/react/24/outline"
+import PasswordButton from "@/components/auth/password-button"
+import { useState } from "react"
 
 interface InputProps {
     type: "text" | "password"
@@ -8,8 +12,9 @@ interface InputProps {
 }
 
 const Input = ({ type, placeholder, name, disabled=false }: InputProps) => {
-    const iconClasses = "size-5 text-text-color transition-colors group-focus-within:text-primary!"
+    const [showPassword, setShowPassword] = useState<boolean>(false)
 
+    const iconClasses = "size-5 text-text-color transition-colors group-focus-within:text-primary!"
     let icon
 
     if (name === "email") icon = <AtSymbolIcon className={ iconClasses } />
@@ -21,12 +26,16 @@ const Input = ({ type, placeholder, name, disabled=false }: InputProps) => {
             { icon }
 
             <input
-                type={ type }
+                type={ type === "password" && showPassword ? "text" : type }
                 placeholder={ placeholder }
                 disabled={ disabled }
                 name={ name }
                 className="py-4 w-full focus:outline-none"
             />
+
+            {
+                type === "password" && <PasswordButton isPasswordShown={ showPassword } toggleIsPasswordShown={ () => setShowPassword(prev => !prev) } />
+            }
         </label>
     )
 }

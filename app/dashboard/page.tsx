@@ -1,7 +1,7 @@
-const NotesPage = () => {
+const DashboardPage = () => {
     return (
         <></>
     )
 }
 
-export default NotesPage
+export default DashboardPage

@@ -11,6 +11,8 @@
 
     --primary: #7158FF;
     --primary-dark: #443599;
+
+    --shadow-card: 1px 0px 9px 0px rgba(112, 112, 112, 0.1);
 }
 
 [data-theme=dark] {
@@ -22,6 +24,8 @@
 
     --primary: #7567C5;
     --primary-dark: #594CA3;
+
+    --shadow-card: 0px 4px 16px 0px rgba(0, 0, 0, 0.45), 0px 0px 24px 0px rgba(117, 103, 197, 0.18);
 }
 
 @theme inline {
@@ -34,6 +38,8 @@
 
     --font-dm-sans: var(--font-dm-sans);
     --font-source-sans: var(--font-source-sans);
+
+    --shadow-card: var(--shadow-card);
 }
 
 @layer base {
