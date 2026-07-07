@@ -3,8 +3,8 @@
 import AuthHeader from "@/components/auth/auth-header"
 import SignUpForm from "@/components/auth/forms/sign-up-form"
 import AuthLinks from "@/components/auth/auth-links"
-import {useActionState} from "react";
-import {AuthFormState, signUp} from "@/actions/auth";
+import { useActionState } from "react"
+import { AuthFormState, signUp } from "@/actions/auth"
 
 const SignUpPage = () => {
     const [state, formAction] = useActionState<AuthFormState, FormData>(signUp, undefined)

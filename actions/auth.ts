@@ -77,7 +77,7 @@ export const signIn = async (_prevState: AuthFormState, formData: FormData): Pro
         return { message: "Invalid e-mail or password" }
     }
 
-    const validPassword = await verifyPassword(user.password, password)
+    const validPassword = await verifyPassword(password, user.password)
     if (!validPassword) {
         return { message: "Invalid e-mail or password" }
     }

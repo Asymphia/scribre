@@ -6,7 +6,6 @@ import SignUpHints from "@/components/auth/sign-up-hints"
 import {useState} from "react"
 import { AuthFormState } from "@/actions/auth"
 import ErrorMessages from "@/components/auth/error-messages"
-import StyledLink from "@/components/ui/styled-link"
 import Button from "@/components/ui/button";
 
 interface SignUpFormProps {
@@ -30,7 +29,7 @@ const SignUpForm = ({ state, formAction }: SignUpFormProps) => {
     }
 
     return (
-        <form action={formAction} className="space-y-5">
+        <form action={ formAction } className="space-y-5">
             <div className="flex flex-nowrap gap-5">
                 <Input type="text" placeholder="Name" name="name" />
                 <Input type="text" placeholder="Surname" name="surname" />

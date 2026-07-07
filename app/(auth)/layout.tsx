@@ -2,9 +2,17 @@ import { ReactNode } from "react"
 import Slider from "@/components/auth/slider"
 import logoImage from "@/assets/logo.svg"
 import Image from "next/image"
+import { getCurrentSession } from "@/lib/auth/session"
+import { redirect } from "next/navigation"
 
-const AuthLayout = ({ children }: { children: ReactNode }) => {
+const AuthLayout = async ({ children }: { children: ReactNode }) => {
     const year = new Date().getFullYear()
+
+    const { user } = await getCurrentSession()
+
+    if (user) {
+        redirect("/dashboard")
+    }
 
     return (
         <div className="w-screen h-screen grid grid-cols-2 gap-5 bg-background">
