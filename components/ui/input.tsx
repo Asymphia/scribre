@@ -2,16 +2,17 @@
 
 import { AtSymbolIcon, HashtagIcon, UserIcon } from "@heroicons/react/24/outline"
 import PasswordButton from "@/components/auth/password-button"
-import { useState } from "react"
+import { ChangeEvent, useState } from "react"
 
 interface InputProps {
     type: "text" | "password"
     placeholder: string
     name: string
     disabled?: boolean
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
-const Input = ({ type, placeholder, name, disabled=false }: InputProps) => {
+const Input = ({ type, placeholder, name, disabled=false, onChange }: InputProps) => {
     const [showPassword, setShowPassword] = useState<boolean>(false)
 
     const iconClasses = "size-5 text-text-color transition-colors group-focus-within:text-primary!"
@@ -31,6 +32,7 @@ const Input = ({ type, placeholder, name, disabled=false }: InputProps) => {
                 disabled={ disabled }
                 name={ name }
                 className="py-4 w-full focus:outline-none"
+                onChange={ onChange }
             />
 
             {

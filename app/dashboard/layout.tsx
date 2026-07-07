@@ -1,7 +1,15 @@
 import { ReactNode } from "react"
 import SideMenu from "@/components/layout/side-menu"
+import { getCurrentSession } from "@/lib/auth/session"
+import { redirect } from "next/navigation"
 
-const DashboardLayout = ({ children }: { children: ReactNode }) => {
+const DashboardLayout = async ({ children }: { children: ReactNode }) => {
+    const { user } = await getCurrentSession()
+
+    if (!user) {
+        redirect("/login")
+    }
+
     return (
         <div className="bg-foreground h-screen flex gap-5">
             <SideMenu />

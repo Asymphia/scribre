@@ -1,6 +1,6 @@
 generator client {
   provider        = "prisma-client"
-  output          = "../src/generated"
+  output          = "./generated"
   previewFeatures = ["driverAdapters"]
 }
 
@@ -9,10 +9,26 @@ datasource db {
 }
 
 model User {
-  id                Int     @id @default(autoincrement())
+  id                Int       @id @default(autoincrement())
   name              String
   surname           String
-  email             String  @unique
+  email             String    @unique
   password          String
   profilePictureUrl String?
+  emailVerified     Boolean   @default(true)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  sessions          Session[]
+}
+
+model Session {
+  id        String    @id
+  userId    Int
+  expiresAt DateTime
+  createdAt DateTime  @default(now())
+
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }

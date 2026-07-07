@@ -12,6 +12,8 @@
     --primary: #7158FF;
     --primary-dark: #443599;
 
+    --error: #F43F5E;
+
     --shadow-card: 1px 0px 9px 0px rgba(112, 112, 112, 0.1);
 }
 
@@ -25,6 +27,8 @@
     --primary: #7567C5;
     --primary-dark: #594CA3;
 
+    --error: #FB7185;
+
     --shadow-card: 0px 4px 16px 0px rgba(0, 0, 0, 0.45), 0px 0px 24px 0px rgba(117, 103, 197, 0.18);
 }
 
@@ -35,6 +39,7 @@
     --color-text-color: var(--text-color);
     --color-primary: var(--primary);
     --color-primary-dark: var(--primary-dark);
+    --color-error: var(--error);
 
     --font-dm-sans: var(--font-dm-sans);
     --font-source-sans: var(--font-source-sans);
