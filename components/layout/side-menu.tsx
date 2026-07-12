@@ -1,6 +1,6 @@
 "use client"
 
-import { PencilSquareIcon, CogIcon } from "@heroicons/react/24/outline"
+import { PencilSquareIcon, CogIcon, Squares2X2Icon } from "@heroicons/react/24/outline"
 import logo from "@/assets/logo-colour.svg"
 import Image from "next/image";
 import MenuItem from "@/components/layout/menu-item"
@@ -9,8 +9,9 @@ import SignOutItem from "@/components/layout/sign-out-item"
 
 const SideMenu = () => {
     const items = [
+        { name: "Dashboard", link: "/dashboard", icon: Squares2X2Icon},
         { name: "Notes", link: "/dashboard/notes", icon: PencilSquareIcon},
-        { name: "Settings", link: "/dashboard/settings", icon: CogIcon }
+        { name: "Settings", link: "/dashboard/settings", icon: CogIcon },
     ]
 
     return (
@@ -18,14 +19,14 @@ const SideMenu = () => {
             <div className="space-y-28">
                 <Image alt="Scribra's logo" src={ logo } />
 
-                <div className="space-y-1">
+                <nav className="space-y-1">
                     {
                         items.map(item => (
                             <MenuItem name={ item.name } link={ item.link } Icon={ item.icon } key={ item.link } />
                         ))
                     }
                     <SignOutItem />
-                </div>
+                </nav>
             </div>
 
             <CurrentUser />
