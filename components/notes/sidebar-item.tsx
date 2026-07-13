@@ -1,6 +1,6 @@
 import { StarIcon } from "@heroicons/react/24/outline"
 import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid"
-import ItemTag from "@/components/ui/item-tag"
+import ItemTag from "@/components/notes/item-tag"
 
 interface SidebarItemProps {
     name: string
