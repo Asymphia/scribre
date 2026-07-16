@@ -13,9 +13,7 @@ import ItemsTable from "@/components/notes/items-table"
 const NotesPage = () => {
     const starredFolders = DUMMY_FOLDERS.filter(folder => folder.isStarred)
     const allFolders = DUMMY_FOLDERS.filter(folder => !folder.isStarred)
-
     const currentFolder = DUMMY_FOLDERS[0]
-
     const currentNotes = DUMMY_NOTES.filter(note => note.folderId === currentFolder.id)
 
     return (
@@ -34,13 +32,9 @@ const NotesPage = () => {
                 <div className="space-y-6">
                     <MainHeading name={ currentFolder.name } description={ currentFolder.description } tags={ currentFolder.tags } isStarred={ currentFolder.isStarred } />
 
-                    <div className="flex items-center gap-5">
+                    <div className="flex items-center gap-6">
                         <SearchBar />
-
-                        <div className="flex items-center gap-3">
-                            <IconButton Icon={ BarsArrowDownIcon } onClick={() => {}} />
-                            <IconButton Icon={ FunnelIcon } onClick={() => {}} />
-                        </div>
+                        <IconButton Icon={ FunnelIcon } onClick={() => {}} />
                     </div>
 
                     <ItemsTable items={ currentNotes } />
