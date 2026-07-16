@@ -22,7 +22,7 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
     return (
         <html lang="en">
             <body className={`${DMSans.variable} ${SourceSans3.variable} antialiased`}>
-                {children}
+                { children }
             </body>
         </html>
     )
