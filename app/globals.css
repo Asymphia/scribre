@@ -54,6 +54,11 @@
         color: var(--header-color);
     }
 
+    th {
+        font-family: var(--font-dm-sans);
+        color: var(--header-color);
+    }
+
     body {
         font-family: var(--font-source-sans);
         font-size: 1rem;
