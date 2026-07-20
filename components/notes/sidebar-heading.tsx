@@ -10,7 +10,7 @@ const SidebarHeading = ({ text, backButton=false }: { text: string, backButton?:
     return (
         <div className={`w-full ${ backButton ? "grid grid-cols-3" : "flex items-center justify-between" }`}>
             {
-                backButton && <IconButton Icon={ ChevronLeftIcon } onClick={ () => router.back() } />
+                backButton && <IconButton Icon={ ChevronLeftIcon } onClick={ () => router.push("/dashboard/notes") } />
             }
 
             <h2 className="text-2xl justify-self-center">

@@ -6,6 +6,7 @@ import SearchBar from "@/components/ui/search-bar"
 import ItemSection from "@/components/notes/item-section"
 import { FolderIcon, StarIcon } from "@heroicons/react/24/outline"
 import MainHeading from "@/components/notes/main-heading"
+import NoteContent from "@/components/notes/note-content";
 
 const SingleNotePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
     const { slug: noteId } = await params
@@ -46,6 +47,8 @@ const SingleNotePage = async ({ params }: { params: Promise<{ slug: string }> })
                         isStarred={ currentNote.isStarred }
                         type="note"
                     />
+
+                    <NoteContent content={ currentNote.content } />
                 </div>
             </Card>
         </div>

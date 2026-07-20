@@ -173,7 +173,83 @@ export const DUMMY_NOTES: Note[] = [
         lastEdited: "05-07-2025",
         tags: ["marketing", "email", "draft"],
         folderId: "folder-1",
-        content: "",
+        content: `# Brand Guidelines — wersja robocza
+
+Ten dokument opisuje **podstawowe zasady** brandingu. Zobacz też [sekcję o kolorach](#kolory-brandowe) i [typografię](#typografia).
+
+## Wstęp
+
+To jest akapit z *kursywą*, **pogrubieniem** oraz ~~przekreślonym tekstem~~. Możesz też łączyć ***bold i italic razem***.
+
+> Cytat: "Spójność wizualna to nie opcja, to fundament rozpoznawalności marki."
+
+### Checklist przed publikacją
+
+- [x] Logo w wersji kolorowej
+- [x] Logo w wersji mono
+- [ ] Wersja na ciemne tło
+
+1. Sprawdź kontrast
+2. Wyeksportuj do SVG
+3. Zatwierdź z zespołem
+
+## Kolory brandowe
+
+| Nazwa | Hex | Użycie |
+|---|---|---|
+| Primary | \`#4F46E5\` | Przyciski, linki |
+| Secondary | \`#F59E0B\` | Akcenty |
+| Neutral | \`#1F2937\` | Tekst |
+
+## Typografia
+
+Nagłówki: \`Inter\`, waga 600-700. Tekst: \`Inter\`, waga 400.
+
+Przykład inline code: ustaw \`font-family: 'Inter', sans-serif;\`.
+
+Blok kodu:
+
+\`\`\`css
+.heading {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+}
+\`\`\`
+
+## Wzory (do proporcji logo)
+
+Stosunek wysokości do szerokości: $h/w = 1{:}1.618$
+
+Pełny wzór na skalowanie:
+
+$$
+scale(x) = \\frac{x}{\\text{baseUnit}} \\times 100\\%
+$$
+
+## Diagram przepływu zatwierdzania
+
+\`\`\`mermaid
+flowchart LR
+    A[Draft] --> B{Design review}
+    B -- OK --> C[Zatwierdzone]
+    B -- Poprawki --> A
+\`\`\`
+
+## Linki zewnętrzne
+
+Szop szopix szopers
+
+- li1
+- li2
+
+Szopy są super
+
+1. ol1
+2. ol2
+
+> blockquote
+
+Pełny brandbook: [Figma – Brand Guidelines](https://figma.com)`,
     },
     {
         id: "note-2",
