@@ -1,12 +1,9 @@
 import { DUMMY_FOLDERS, DUMMY_NOTES } from "@/lib/dummy-data"
 import { notFound } from "next/navigation"
 import Card from "@/components/ui/card"
-import SidebarHeading from "@/components/notes/sidebar-heading"
-import SearchBar from "@/components/ui/search-bar"
-import ItemSection from "@/components/notes/item-section"
-import { FolderIcon, StarIcon } from "@heroicons/react/24/outline"
 import MainHeading from "@/components/notes/main-heading"
-import NoteContent from "@/components/notes/note-content";
+import NoteContent from "@/components/notes/note-content"
+import NotesSidebar from "@/components/notes/notes-sidebar"
 
 const SingleNotePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
     const { slug: noteId } = await params
@@ -27,31 +24,29 @@ const SingleNotePage = async ({ params }: { params: Promise<{ slug: string }> })
     const allNotes = notesInFolder.filter(item => !item.isStarred)
 
     return (
-        <div className="grid grid-cols-[1fr_2.5fr] items-start gap-5 mt-5">
+        <>
+            <NotesSidebar
+                title="Your notes"
+                backButton={ true }
+                starredTitle="Starred notes"
+                allTitle="All notes"
+                starredItems={ starredNotes }
+                allItems={ allNotes }
+                currentItem={ currentNote }
+            />
+
             <Card>
-                <div className="space-y-5">
-                    <SidebarHeading text="Your notes" backButton={ true } />
-                    <SearchBar />
-                </div>
+                <MainHeading
+                    name={ currentNote.name }
+                    description={ currentNote.description }
+                    tags={ currentNote.tags }
+                    isStarred={ currentNote.isStarred }
+                    type="note"
+                />
 
-                <ItemSection title="Starred notes" Icon={ StarIcon } items={ starredNotes } current={ currentNote } />
-                <ItemSection title="All notes" Icon={ FolderIcon } items={ allNotes } current={ currentNote } />
+                <NoteContent content={ currentNote.content } />
             </Card>
-
-            <Card>
-                <div className="space-y-6">
-                    <MainHeading
-                        name={ currentNote.name }
-                        description={ currentNote.description }
-                        tags={ currentNote.tags }
-                        isStarred={ currentNote.isStarred }
-                        type="note"
-                    />
-
-                    <NoteContent content={ currentNote.content } />
-                </div>
-            </Card>
-        </div>
+        </>
     )
 }
 
