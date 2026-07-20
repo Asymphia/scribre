@@ -12,7 +12,7 @@ interface MenuItemProps {
 
 const MenuItem = ({ name, link, Icon }: MenuItemProps) => {
     const pathname = usePathname()
-    const isActive = pathname === link
+    const isActive = link === "/dashboard" ? pathname === "/dashboard" : pathname.startsWith(link)
 
     return (
         <Link href={ link } className={`flex items-center gap-3 px-3 py-2 bg-background transition rounded-lg font-medium

@@ -10,9 +10,10 @@ interface MainHeadingProps {
     description?: string
     tags?: string[]
     isStarred: boolean
+    type?: "note" | "folder"
 }
 
-const MainHeading = ({ name, description, tags, isStarred }: MainHeadingProps) => {
+const MainHeading = ({ name, description, tags, isStarred, type="folder" }: MainHeadingProps) => {
     return (
         <div className="flex items-center justify-between">
             <div className="flex items-center gap-5">
@@ -39,7 +40,10 @@ const MainHeading = ({ name, description, tags, isStarred }: MainHeadingProps) =
 
             <div className="flex items-center gap-3">
                 <IconButton Icon={ PencilIcon } onClick={() => {}} />
-                <IconButton Icon={ PlusIcon } onClick={() => {}} />
+
+                {
+                    type === "folder" && <IconButton Icon={ PlusIcon } onClick={() => {}} />
+                }
 
                 {
                     isStarred ? <IconButton Icon={ StarIconSolid } onClick={() => {}} className="text-primary" /> : <IconButton Icon={ StarIcon } onClick={() => {}} />
