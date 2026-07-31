@@ -3,24 +3,27 @@
 import { ReactNode } from "react"
 import Card from "@/components/ui/card"
 import { createPortal } from "react-dom"
-import IconButton from "@/components/ui/icon-button";
+import IconButton from "@/components/ui/icon-button"
 import { XMarkIcon } from "@heroicons/react/24/outline"
 
 interface ModalProps {
     children: ReactNode
     text: string
+    className?: string
+    visible?: boolean
+    onClick?: () => void
 }
 
-const Modal = ({ children, text }: ModalProps) => {
+const Modal = ({ children, text, className, visible=false, onClick }: ModalProps) => {
     return createPortal(
-        <div className="fixed inset-0 bg-header-color/20 backdrop-blur-xs z-20 flex items-center justify-center">
-            <Card>
+        <div className={`fixed inset-0 bg-header-color/20 backdrop-blur-xs z-20 flex items-center justify-center ${ !visible && "hidden" }`}>
+            <Card className={ className }>
                 <div className="flex items-center justify-between gap-7">
                     <h2 className="text-2xl">
                         { text }
                     </h2>
 
-                    <IconButton Icon={ XMarkIcon } onClick={ () => {} } />
+                    <IconButton Icon={ XMarkIcon } onClick={ onClick } />
                 </div>
 
                 { children }

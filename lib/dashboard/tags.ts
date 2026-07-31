@@ -21,3 +21,12 @@ export const getOrCreateTagIds = async (tagNames: string[]): Promise<number[]> =
 
     return tags.map(t => t.id)
 }
+
+export const getAllTags = async (): Promise<string[]> => {
+    const tags = await prisma.tag.findMany({
+        select: { tag: true },
+        orderBy: { tag: "asc" }
+    })
+
+    return tags.map(t => t.tag)
+}

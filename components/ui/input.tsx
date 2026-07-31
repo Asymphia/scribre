@@ -2,7 +2,7 @@
 
 import { AtSymbolIcon, HashtagIcon, UserIcon } from "@heroicons/react/24/outline"
 import PasswordButton from "@/components/auth/password-button"
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent, ComponentType, SVGProps, useState } from "react"
 
 interface InputProps {
     type: "text" | "password"
@@ -10,21 +10,26 @@ interface InputProps {
     name: string
     disabled?: boolean
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+    Icon?: ComponentType<SVGProps<SVGSVGElement>>
 }
 
-const Input = ({ type, placeholder, name, disabled=false, onChange }: InputProps) => {
+const Input = ({ type, placeholder, name, disabled=false, onChange, Icon }: InputProps) => {
     const [showPassword, setShowPassword] = useState<boolean>(false)
 
     const iconClasses = "size-5 text-text-color transition-colors group-focus-within:text-primary!"
-    let icon
+    let InputIcon
 
-    if (name === "email") icon = <AtSymbolIcon className={ iconClasses } />
-    else if (name === "password" || name === "repeat-password") icon = <HashtagIcon className={ iconClasses } />
-    else icon = <UserIcon className={ iconClasses } />
+    if(Icon) {
+        InputIcon = Icon
+    } else {
+        if (name === "email") InputIcon = AtSymbolIcon
+        else if (name === "password" || name === "repeat-password") InputIcon = HashtagIcon
+        else InputIcon = UserIcon
+    }
 
     return (
         <label className="group flex flex-nowrap gap-3 items-center px-4 cursor-text bg-foreground w-full rounded-xl border-1 border-solid border-foreground transition-colors hover:border-text-color focus-within:border-primary!">
-            { icon }
+            <InputIcon className={ iconClasses } />
 
             <input
                 type={ type === "password" && showPassword ? "text" : type }

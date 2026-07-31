@@ -17,7 +17,7 @@ export type FolderFormState = { errors?: Record<string, string[]>, message?: str
 const folderSchema = z.object({
     title: z.string().min(1, "Enter a title").max(120, "Title is too long"),
     description: z.string().max(500, "Description is too long").default(""),
-    iconUrl: z.string().max(500).default(""),
+    iconUrl: z.string().max(500).nullish().transform(val => val ?? ""),
     tags: z.string().optional()
 })
 

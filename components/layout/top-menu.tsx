@@ -4,6 +4,8 @@ import { MoonIcon, PencilIcon, FolderIcon } from "@heroicons/react/24/outline"
 import Button from "@/components/ui/button"
 import IconButton from "@/components/ui/icon-button"
 import { useEffect, useRef, useState } from "react"
+import Modal from "@/components/ui/modal"
+import AddNewFolderForm from "@/components/notes/forms/add-new-folder-form"
 
 const TopMenu = () => {
     const [visible, setVisible] = useState(true)
@@ -33,24 +35,30 @@ const TopMenu = () => {
         return () => scrollContainer.removeEventListener("scroll", handleScroll)
     }, [])
 
+    const [isModalVisible, setModalVisible] = useState(false)
+
     return (
-        <div ref={menuRef}
+        <div ref={ menuRef }
              className={`bg-background py-3 px-5 flex items-center justify-end gap-5 w-full rounded-3xl shadow-card sticky top-0 z-10 transition-all duration-400
                  ${visible ? "translate-y-0 opacity-100" : "-translate-y-[115%] opacity-0"}`}
         >
-            <IconButton Icon={MoonIcon} onClick={() => {}} />
+            <IconButton Icon={ MoonIcon } onClick={() => {}} />
 
             <Button>
                 <PencilIcon className="size-5" />
                 Add new note
             </Button>
 
-            <Button style="secondary">
+            <Button style="secondary" onClick={ () => setModalVisible(true) }>
                 <FolderIcon className="size-5" />
                 Add new folder
             </Button>
 
             <div className="size-14 rounded-full bg-foreground" />
+
+            <Modal text="Add new folder" className="w-140" onClick={ () => setModalVisible(false) } visible={ isModalVisible } >
+                <AddNewFolderForm />
+            </Modal>
         </div>
     )
 }
