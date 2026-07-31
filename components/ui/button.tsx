@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import {redirect} from "next/navigation";
+import { redirect } from "next/navigation"
 
 interface ButtonProps {
     children: ReactNode

@@ -30,7 +30,7 @@ const Slider = () => {
     return (
         <section
             style={{ backgroundImage: `url(${backgroundImage.src})` }}
-            className="bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center relative p-8"
+            className="bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center relative p-8 min-h-5"
         >
             <div
                 onMouseMove={ handleMouseMove }

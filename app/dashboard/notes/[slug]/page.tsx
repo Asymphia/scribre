@@ -1,25 +1,40 @@
-import { DUMMY_FOLDERS, DUMMY_NOTES } from "@/lib/dummy-data"
-import { notFound } from "next/navigation"
+import { notFound, redirect } from "next/navigation"
 import Card from "@/components/ui/card"
 import MainHeading from "@/components/notes/main-heading"
 import NoteContent from "@/components/notes/note-content"
 import NotesSidebar from "@/components/notes/notes-sidebar"
+import { getCurrentSession } from "@/lib/auth/session"
+import { getNoteById, getNotesFromFolder } from "@/lib/dashboard/notes"
+import { getFolderById } from "@/lib/dashboard/folders"
 
 const SingleNotePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
-    const { slug: noteId } = await params
-    const currentNote = DUMMY_NOTES.find(item => item.id === noteId)
+    const { user } = await getCurrentSession()
+
+    if (!user) {
+        redirect("/login")
+    }
+
+    const { slug } = await params
+    const noteId = Number(slug)
+
+    if (!Number.isInteger(noteId)) {
+        notFound()
+    }
+
+    const currentNote = await getNoteById(noteId, user.id)
 
     if (!currentNote) {
         notFound()
     }
 
-    const currentFolder = DUMMY_FOLDERS.find(item => item.id === currentNote.folderId)
+    const currentFolder = await getFolderById(currentNote.folderId, user.id)
 
     if (!currentFolder) {
         notFound()
     }
 
-    const notesInFolder = DUMMY_NOTES.filter(item => item.folderId === currentFolder.id)
+    const notesInFolder = await getNotesFromFolder(currentFolder.id, user.id)
+
     const starredNotes = notesInFolder.filter(item => item.isStarred)
     const allNotes = notesInFolder.filter(item => !item.isStarred)
 
@@ -37,7 +52,7 @@ const SingleNotePage = async ({ params }: { params: Promise<{ slug: string }> })
 
             <Card>
                 <MainHeading
-                    name={ currentNote.name }
+                    name={ currentNote.title }
                     description={ currentNote.description }
                     tags={ currentNote.tags }
                     isStarred={ currentNote.isStarred }

@@ -1,11 +1,11 @@
 "use client"
 
-import { Note } from "@/lib/dummy-data"
+import { Note } from "@/lib/dashboard/notes"
 import StyledTh from "@/components/notes/styled-th"
 import ItemsTableRow from "@/components/notes/items-table-row"
 import { useSortableTable } from "@/hooks/use-sortable-table"
 
-export type SortKey = "name" | "createdAt" | "lastEdited" | "tags" | "isStarred"
+export type SortKey = "title" | "createdAt" | "updatedAt" | "tags" | "isStarred"
 
 const ItemsTable = ({ items }: { items: Note[] }) => {
     const getSortValue = (item: Note, sortKey: SortKey) => item[sortKey]
@@ -25,7 +25,7 @@ const ItemsTable = ({ items }: { items: Note[] }) => {
 
             <thead>
                 <tr>
-                    <StyledTh {...getThProps("name")}>
+                    <StyledTh {...getThProps("title")}>
                         Note
                     </StyledTh>
 
@@ -33,8 +33,8 @@ const ItemsTable = ({ items }: { items: Note[] }) => {
                         Created at
                     </StyledTh>
 
-                    <StyledTh {...getThProps("lastEdited")}>
-                        Last edited
+                    <StyledTh {...getThProps("updatedAt")}>
+                        Updated at
                     </StyledTh>
 
                     <StyledTh {...getThProps("tags")}>

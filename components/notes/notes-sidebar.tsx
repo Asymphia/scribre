@@ -1,4 +1,5 @@
-import { Folder, Note } from "@/lib/dummy-data"
+import { Folder } from "@/lib/dashboard/folders"
+import { Note } from "@/lib/dashboard/notes"
 import Card from "@/components/ui/card"
 import SidebarHeading from "@/components/notes/sidebar-heading"
 import SearchBar from "@/components/ui/search-bar"

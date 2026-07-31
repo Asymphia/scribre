@@ -9,26 +9,86 @@ datasource db {
 }
 
 model User {
-  id                Int       @id @default(autoincrement())
+  id                Int      @id @default(autoincrement())
   name              String
   surname           String
-  email             String    @unique
+  email             String   @unique
   password          String
   profilePictureUrl String?
-  emailVerified     Boolean   @default(true)
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
+  emailVerified     Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 
-  sessions          Session[]
+  sessions Session[]
+  folders  Folder[]
+  notes    Note[]
 }
 
 model Session {
-  id        String    @id
+  id        String   @id
   userId    Int
   expiresAt DateTime
-  createdAt DateTime  @default(now())
+  createdAt DateTime @default(now())
 
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+}
+
+model Tag {
+  id         Int         @id @default(autoincrement())
+  tag        String      @unique
+  folderTags FolderTag[]
+  noteTags   NoteTag[]
+}
+
+model FolderTag {
+  id       Int @id @default(autoincrement())
+  tagId    Int
+  folderId Int
+
+  tag    Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  folder Folder @relation(fields: [folderId], references: [id], onDelete: Cascade)
+}
+
+model Folder {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  title       String
+  description String
+  iconUrl     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  isStarred   Boolean
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  tags  FolderTag[]
+  notes Note[]
+}
+
+model NoteTag {
+  id     Int @id @default(autoincrement())
+  tagId  Int
+  noteId Int
+
+  tag  Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  note Note @relation(fields: [noteId], references: [id], onDelete: Cascade)
+}
+
+model Note {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  folderId    Int
+  title       String
+  description String
+  content     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  isStarred   Boolean
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  folder Folder @relation(fields: [folderId], references: [id], onDelete: Cascade)
+
+  tags NoteTag[]
 }

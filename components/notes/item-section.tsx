@@ -1,12 +1,13 @@
 import { ComponentType, SVGProps } from "react"
-import { Folder } from "@/lib/dummy-data"
-import SidebarItem from "@/components/notes/sidebar-item";
+import { Folder } from "@/lib/dashboard/folders"
+import { Note } from "@/lib/dashboard/notes"
+import SidebarItem from "@/components/notes/sidebar-item"
 
 interface ItemSectionProps {
     title: string
     Icon: ComponentType<SVGProps<SVGSVGElement>>
-    items: Folder[]
-    current: Folder
+    items: Folder[] | Note[]
+    current: Folder | Note
 }
 
 const ItemSection = ({ title, Icon, items, current }: ItemSectionProps) => {
@@ -24,8 +25,8 @@ const ItemSection = ({ title, Icon, items, current }: ItemSectionProps) => {
             <div className="min-w-0 space-y-1">
                 {
                     items.map(item => (
-                        <SidebarItem name={ item.name } description={ item.description } tags={ item.tags }
-                                     isStarred={ item.isStarred } key={ item.name } isCurrent={ item.id === current.id }
+                        <SidebarItem name={ item.title } description={ item.description } tags={ item.tags }
+                                     isStarred={ item.isStarred } key={ item.title } isCurrent={ item.id === current.id }
                         />
                     ))
                 }

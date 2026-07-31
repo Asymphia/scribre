@@ -1,4 +1,4 @@
-import { Note } from "@/lib/dummy-data"
+import { Note } from "@/lib/dashboard/notes"
 import SidebarItem from "@/components/notes/sidebar-item"
 import StyledTd from "@/components/notes/styled-td"
 import ItemTag from "@/components/notes/item-tag"
@@ -10,15 +10,15 @@ const ItemsTableRow = ({ item }: { item: Note }) => {
     return (
         <tr>
             <td>
-                <SidebarItem name={ item.name } description={ item.description } href={`/dashboard/notes/${ item.id }`} />
+                <SidebarItem name={ item.title } description={ item.description } href={`/dashboard/notes/${ item.id }`} />
             </td>
 
             <StyledTd>
-                { item.createdAt }
+                { item.createdAt.toString() }
             </StyledTd>
 
             <StyledTd>
-                { item.lastEdited }
+                { item.updatedAt.toString() }
             </StyledTd>
 
             <StyledTd className="justify-start">
