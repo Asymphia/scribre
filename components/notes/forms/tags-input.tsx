@@ -75,8 +75,8 @@ const TagsInput = ({ selectedTags, onChange, availableTags, maxTags = 3 }: TagsI
 
     return (
         <div className="relative" ref={ containerRef }>
-            <div className="rounded-xl bg-foreground px-4 py-4 flex flex-wrap items-center gap-3 border-1 border-solid border-foreground transition-colors group hover:border-text-color focus-within:border-primary!">
-                <TagIcon className="size-5 transition-colors group-focus-within:text-primary!" />
+            <div className="rounded-xl bg-foreground px-4 py-4 flex flex-nowrap items-center gap-3 border-1 border-solid border-foreground transition-colors group hover:border-text-color focus-within:border-primary!">
+                <TagIcon className="size-5 transition-colors group-focus-within:text-primary! shrink-0" />
 
                 {
                     selectedTags.map(tag => (
@@ -93,7 +93,7 @@ const TagsInput = ({ selectedTags, onChange, availableTags, maxTags = 3 }: TagsI
                             onFocus={ () => setIsOpen(true) }
                             onKeyDown={ handleKeyDown }
                             placeholder={ selectedTags.length === 0 ? "Search or create tags" : "" }
-                            className="bg-transparent outline-none"
+                            className="bg-transparent outline-none w-full"
                         />
                     )
                 }

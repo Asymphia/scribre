@@ -1,3 +1,5 @@
+"use client"
+
 import Input from "@/components/ui/input"
 import { FolderOpenIcon, PencilIcon } from "@heroicons/react/24/outline"
 import Textarea from "@/components/ui/textarea"

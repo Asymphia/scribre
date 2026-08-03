@@ -1,3 +1,5 @@
+"use client"
+
 import { ComponentType, SVGProps } from "react"
 
 const IconButton = ({ Icon, onClick, className }: { Icon: ComponentType<SVGProps<SVGSVGElement>>, onClick?: () => void, className?: string }) => {

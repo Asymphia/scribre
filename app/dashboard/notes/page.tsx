@@ -9,6 +9,7 @@ import { getCurrentSession } from "@/lib/auth/session"
 import { redirect } from "next/navigation"
 import { getFoldersByUser } from "@/lib/dashboard/folders"
 import { getNotesFromFolder } from "@/lib/dashboard/notes"
+import FiltersContainer from "@/components/notes/filters-container";
 
 const NotesPage = async () => {
     const { user } = await getCurrentSession()
@@ -43,10 +44,7 @@ const NotesPage = async () => {
                 <div className="space-y-6">
                     <MainHeading name={ currentFolder.title } description={ currentFolder.description } tags={ currentFolder.tags } isStarred={ currentFolder.isStarred } />
 
-                    <div className="flex items-center gap-6">
-                        <SearchBar />
-                        <IconButton Icon={ FunnelIcon } onClick={() => {}} />
-                    </div>
+                    <FiltersContainer />
 
                     <ItemsTable items={ currentNotes } />
                 </div>
