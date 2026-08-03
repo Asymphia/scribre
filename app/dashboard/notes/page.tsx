@@ -1,15 +1,12 @@
 import Card from "@/components/ui/card"
-import SearchBar from "@/components/ui/search-bar"
-import { FunnelIcon } from "@heroicons/react/24/outline"
 import MainHeading from "@/components/notes/main-heading"
-import IconButton from "@/components/ui/icon-button"
 import ItemsTable from "@/components/notes/items-table"
 import NotesSidebar from "@/components/notes/notes-sidebar"
 import { getCurrentSession } from "@/lib/auth/session"
 import { redirect } from "next/navigation"
 import { getFoldersByUser } from "@/lib/dashboard/folders"
 import { getNotesFromFolder } from "@/lib/dashboard/notes"
-import FiltersContainer from "@/components/notes/filters-container";
+import FiltersContainer from "@/components/notes/filters-container"
 
 const NotesPage = async () => {
     const { user } = await getCurrentSession()
