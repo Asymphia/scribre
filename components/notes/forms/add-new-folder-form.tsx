@@ -4,28 +4,28 @@ import Input from "@/components/ui/input"
 import { FolderOpenIcon, PencilIcon } from "@heroicons/react/24/outline"
 import Textarea from "@/components/ui/textarea"
 import TagsInput from "@/components/notes/forms/tags-input"
-import { useActionState, useState } from "react"
-import Button from "@/components/ui/button"
+import {useActionState, useEffect, useState} from "react"
 import { createFolder, FolderFormState } from "@/actions/folders"
 import ErrorMessages from "@/components/auth/error-messages"
+import AuthButton from "@/components/auth/auth-button"
+import { getAllFolderTags } from "@/lib/dashboard/tags"
 
 const AddNewFolderForm = () => {
     const [tags, setTags] = useState<string[]>([])
-    const availableTags = [
-        "Work",
-        "Personal",
-        "Urgent",
-        "Ideas",
-        "Project",
-        "Meeting",
-        "Finance",
-        "Health",
-        "Travel",
-        "Learning"
-    ]
+    const [availableTags, setAvailableTags] = useState<string[]>([])
+
+    useEffect(() => {
+        getAllFolderTags().then(setAvailableTags)
+    }, [])
 
     const [state, formAction] = useActionState<FolderFormState, FormData>(createFolder, undefined)
     const errors = Object.entries(state?.errors ?? {}).flatMap(([, messages]) => messages)
+
+    useEffect(() => {
+        if (state?.success) {
+            setTags([])
+        }
+    }, [state])
 
     return (
         <form className="space-y-5" action={ formAction }>
@@ -42,9 +42,15 @@ const AddNewFolderForm = () => {
 
             <ErrorMessages errors={ errors } />
 
-            <Button type="submit" className="mt-10 ml-auto">
-                Create a new folder
-            </Button>
+            <AuthButton text="Create a new folder" />
+
+            {
+                state?.success && (
+                    <p>
+                        { state.message }
+                    </p>
+                )
+            }
         </form>
     )
 }

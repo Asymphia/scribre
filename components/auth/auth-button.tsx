@@ -5,7 +5,7 @@ import Button from "@/components/ui/button"
 import { useFormStatus } from "react-dom"
 
 interface AuthButtonProps {
-    text: string;
+    text: string
 }
 
 const AuthButton = ({ text }: AuthButtonProps) => {

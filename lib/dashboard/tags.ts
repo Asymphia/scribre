@@ -30,3 +30,23 @@ export const getAllTags = async (): Promise<string[]> => {
 
     return tags.map(t => t.tag)
 }
+
+export const getAllFolderTags = async (): Promise<string[]> => {
+    const tags = await prisma.tag.findMany({
+        where: { folderTags: { some: {} } },
+        select: { tag: true },
+        orderBy: { tag: "asc" }
+    })
+
+    return tags.map(t => t.tag)
+}
+
+export const getAllNoteTags = async (): Promise<string[]> => {
+    const tags = await prisma.tag.findMany({
+        where: { noteTags: { some: {} } },
+        select: { tag: true },
+        orderBy: { tag: "asc" }
+    })
+
+    return tags.map(t => t.tag)
+}

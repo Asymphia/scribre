@@ -12,7 +12,12 @@ import {
     deleteFolder as deleteFolderInDb
 } from "@/lib/dashboard/folders"
 
-export type FolderFormState = { errors?: Record<string, string[]>, message?: string, success?: boolean } | undefined
+export type FolderFormState = {
+    errors?: Record<string, string[]>
+    message?: string
+    success?: boolean
+    folderId?: number
+} | undefined
 
 const folderSchema = z.object({
     title: z.string().min(1, "Enter a title").max(120, "Title is too long"),
@@ -54,7 +59,7 @@ export const createFolder = async (_prevState: FolderFormState, formData: FormDa
 
     revalidatePath("/dashboard")
 
-    return { success: true, message: String(folder.id) }
+    return { success: true, message: "Folder created successfully", folderId: folder.id }
 }
 
 export const updateFolder = async (id: number, _prevState: FolderFormState, formData: FormData): Promise<FolderFormState> => {
@@ -86,7 +91,7 @@ export const updateFolder = async (id: number, _prevState: FolderFormState, form
 
     revalidatePath("/dashboard")
 
-    return { success: true }
+    return { success: true, message: "Folder updated successfully" }
 }
 
 export const toggleFolderStar = async (id: number): Promise<void> => {
