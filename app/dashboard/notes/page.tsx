@@ -8,7 +8,7 @@ import { getFoldersByUser } from "@/lib/dashboard/folders"
 import { getNotesFromFolder } from "@/lib/dashboard/notes"
 import FiltersContainer from "@/components/notes/filters-container"
 
-const NotesPage = async () => {
+const NotesPage = async ({ searchParams  }: { searchParams: Promise<{ folder?: string }> }) => {
     const { user } = await getCurrentSession()
 
     if (!user) {
@@ -23,7 +23,10 @@ const NotesPage = async () => {
 
     const starredFolders = folders.filter(folder => folder.isStarred)
     const allFolders = folders.filter(folder => !folder.isStarred)
-    const currentFolder = folders[0]
+
+    const { folder: folderIdParam } = await searchParams
+    const currentFolder = folders.find(folder => folder.id === Number(folderIdParam)) ?? allFolders[0] ?? starredFolders[0]
+
     const currentNotes = await getNotesFromFolder(currentFolder.id, user.id)
 
     return (

@@ -26,7 +26,8 @@ const ItemSection = ({ title, Icon, items, current }: ItemSectionProps) => {
                 {
                     items.map(item => (
                         <SidebarItem name={ item.title } description={ item.description } tags={ item.tags }
-                                     isStarred={ item.isStarred } key={ item.title } isCurrent={ item.id === current.id }
+                                     isStarred={ item.isStarred } key={ item.id } isCurrent={ item.id === current.id }
+                                     href={`/dashboard/notes?folder=${ item.id }`}
                         />
                     ))
                 }
