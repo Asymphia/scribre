@@ -8,9 +8,10 @@ interface ItemSectionProps {
     Icon: ComponentType<SVGProps<SVGSVGElement>>
     items: Folder[] | Note[]
     current: Folder | Note
+    type: "folder" | "note"
 }
 
-const ItemSection = ({ title, Icon, items, current }: ItemSectionProps) => {
+const ItemSection = ({ title, Icon, items, current, type }: ItemSectionProps) => {
     if(items.length === 0) {
         return null
     }
@@ -25,9 +26,9 @@ const ItemSection = ({ title, Icon, items, current }: ItemSectionProps) => {
             <div className="min-w-0 space-y-1">
                 {
                     items.map(item => (
-                        <SidebarItem name={ item.title } description={ item.description } tags={ item.tags }
-                                     isStarred={ item.isStarred } key={ item.id } isCurrent={ item.id === current.id }
-                                     href={`/dashboard/notes?folder=${ item.id }`}
+                        <SidebarItem name={item.title} description={item.description} tags={item.tags}
+                                     isStarred={item.isStarred} key={item.id} isCurrent={item.id === current.id}
+                                     href={`/dashboard/notes?folder=${item.id}`} id={ item.id } type={ type }
                         />
                     ))
                 }

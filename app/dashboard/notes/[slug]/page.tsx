@@ -6,6 +6,7 @@ import NotesSidebar from "@/components/notes/notes-sidebar"
 import { getCurrentSession } from "@/lib/auth/session"
 import { getNoteById, getNotesFromFolder } from "@/lib/dashboard/notes"
 import { getFolderById } from "@/lib/dashboard/folders"
+import {type} from "node:os";
 
 const SingleNotePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
     const { user } = await getCurrentSession()
@@ -48,6 +49,7 @@ const SingleNotePage = async ({ params }: { params: Promise<{ slug: string }> })
                 starredItems={ starredNotes }
                 allItems={ allNotes }
                 currentItem={ currentNote }
+                type="note"
             />
 
             <Card>
@@ -57,6 +59,7 @@ const SingleNotePage = async ({ params }: { params: Promise<{ slug: string }> })
                     tags={ currentNote.tags }
                     isStarred={ currentNote.isStarred }
                     type="note"
+                    id={ currentNote.id }
                 />
 
                 <NoteContent content={ currentNote.content } />

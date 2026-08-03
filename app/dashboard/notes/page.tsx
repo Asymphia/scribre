@@ -38,11 +38,12 @@ const NotesPage = async ({ searchParams  }: { searchParams: Promise<{ folder?: s
                 starredItems={ starredFolders }
                 allItems={ allFolders }
                 currentItem={ currentFolder }
+                type="folder"
             />
 
             <Card>
                 <div className="space-y-6">
-                    <MainHeading name={ currentFolder.title } description={ currentFolder.description } tags={ currentFolder.tags } isStarred={ currentFolder.isStarred } />
+                    <MainHeading id={ currentFolder.id } name={ currentFolder.title } description={ currentFolder.description } tags={ currentFolder.tags } isStarred={ currentFolder.isStarred } />
 
                     <FiltersContainer />
 

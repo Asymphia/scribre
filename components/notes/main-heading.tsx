@@ -2,18 +2,19 @@
 
 import ItemTag from "@/components/notes/item-tag"
 import IconButton from "@/components/ui/icon-button"
-import { StarIcon, PencilIcon, PlusIcon } from "@heroicons/react/24/outline"
-import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid"
+import { PencilIcon, PlusIcon } from "@heroicons/react/24/outline"
+import Star from "@/components/notes/star"
 
 interface MainHeadingProps {
     name: string
+    id: number
     description?: string
     tags?: string[]
     isStarred: boolean
     type?: "note" | "folder"
 }
 
-const MainHeading = ({ name, description, tags, isStarred, type="folder" }: MainHeadingProps) => {
+const MainHeading = ({ name, id, description, tags, isStarred, type="folder" }: MainHeadingProps) => {
     return (
         <div className="flex items-center justify-between">
             <div className="flex items-center gap-5">
@@ -45,9 +46,7 @@ const MainHeading = ({ name, description, tags, isStarred, type="folder" }: Main
                     type === "folder" && <IconButton Icon={ PlusIcon } onClick={() => {}} />
                 }
 
-                {
-                    isStarred ? <IconButton Icon={ StarIconSolid } onClick={() => {}} className="text-primary" /> : <IconButton Icon={ StarIcon } onClick={() => {}} />
-                }
+                <Star isStarred={ isStarred } type={ type } id={ id } />
             </div>
         </div>
     )

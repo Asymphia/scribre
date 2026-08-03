@@ -10,7 +10,7 @@ const ItemsTableRow = ({ item }: { item: Note }) => {
     return (
         <tr>
             <td>
-                <SidebarItem name={ item.title } description={ item.description } href={`/dashboard/notes/${ item.id }`} />
+                <SidebarItem name={ item.title } description={ item.description } href={`/dashboard/notes/${ item.id }`} id={ item.id } type="note" />
             </td>
 
             <StyledTd>

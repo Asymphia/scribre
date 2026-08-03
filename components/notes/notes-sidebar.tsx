@@ -14,9 +14,10 @@ interface NotesSidebarProps {
     starredItems: Folder[] | Note[]
     allItems: Folder[] | Note[]
     currentItem: Folder | Note
+    type: "folder" | "note"
 }
 
-const NotesSidebar = ({ title, backButton=false, starredTitle, allTitle, starredItems, allItems, currentItem }: NotesSidebarProps) => {
+const NotesSidebar = ({ title, backButton=false, starredTitle, allTitle, starredItems, allItems, currentItem, type }: NotesSidebarProps) => {
     return (
         <Card>
             <div className="space-y-5">
@@ -29,6 +30,7 @@ const NotesSidebar = ({ title, backButton=false, starredTitle, allTitle, starred
                 Icon={ StarIcon }
                 items={ starredItems }
                 current={ currentItem }
+                type={ type }
             />
 
             <ItemSection
@@ -36,6 +38,7 @@ const NotesSidebar = ({ title, backButton=false, starredTitle, allTitle, starred
                 Icon={ FolderIcon }
                 items={ allItems }
                 current={ currentItem }
+                type={ type }
             />
         </Card>
     )
