@@ -59,11 +59,11 @@ const TopMenu = () => {
             <div className="size-14 rounded-full bg-foreground" />
 
             <Modal text="Add new folder" className="w-140" onClick={ () => setFormModalVisible(false) } visible={ isFormModalVisible } >
-                <AddNewFolderForm />
+                <AddNewFolderForm close={ () => setFormModalVisible(false) } />
             </Modal>
 
             <Modal text="Add new note" className="w-140" onClick={ () => setNoteModalVisible(false) } visible={ isNoteModalVisible } >
-                <AddNewNoteForm />
+                <AddNewNoteForm close={ () => setNoteModalVisible(false) } />
             </Modal>
         </div>
     )

@@ -17,7 +17,7 @@ export type NoteFormState = {
     errors?: Record<string, string[]>,
     message?: string,
     success?: boolean
-    folderId?: number
+    noteId?: number
 } | undefined
 
 const noteSchema = z.object({
@@ -68,7 +68,7 @@ export const createNote = async (_prevState: NoteFormState, formData: FormData):
 
     revalidatePath(`/notes/${note.id}`)
 
-    return { success: true, message: "Note created successfully", folderId: folder.id }
+    return { success: true, message: "Note created successfully", noteId: note.id }
 }
 
 export const updateNote = async (id: number, _prevState: NoteFormState, formData: FormData): Promise<NoteFormState> => {

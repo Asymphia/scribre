@@ -11,8 +11,9 @@ import ErrorMessages from "@/components/auth/error-messages"
 import AuthButton from "@/components/auth/auth-button"
 import Select from "@/components/ui/select"
 import { Folder, getFoldersForCurrentUser } from "@/lib/dashboard/folders"
+import StyledLink from "@/components/ui/styled-link"
 
-const AddNewNoteForm = () => {
+const AddNewNoteForm = ({ close }: { close: () => void }) => {
     const [tags, setTags] = useState<string[]>([])
     const [availableTags, setAvailableTags] = useState<string[]>([])
 
@@ -60,8 +61,14 @@ const AddNewNoteForm = () => {
 
             {
                 state?.success && (
-                    <p>
-                        { state.message }
+                    <p className="mt-7">
+                        { state.message }! {" "}
+
+                        <button onClick={ close }>
+                            <StyledLink href={`/dashboard/notes/${ state.noteId }`}>
+                                Go to the note.
+                            </StyledLink>
+                        </button>
                     </p>
                 )
             }

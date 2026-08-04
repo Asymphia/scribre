@@ -9,8 +9,9 @@ import { createFolder, FolderFormState } from "@/actions/folders"
 import ErrorMessages from "@/components/auth/error-messages"
 import AuthButton from "@/components/auth/auth-button"
 import { getAllFolderTags } from "@/lib/dashboard/tags"
+import StyledLink from "@/components/ui/styled-link";
 
-const AddNewFolderForm = () => {
+const AddNewFolderForm = ({ close }: { close: () => void }) => {
     const [tags, setTags] = useState<string[]>([])
     const [availableTags, setAvailableTags] = useState<string[]>([])
 
@@ -46,8 +47,14 @@ const AddNewFolderForm = () => {
 
             {
                 state?.success && (
-                    <p>
-                        { state.message }
+                    <p className="mt-7">
+                        { state.message }! {" "}
+
+                        <button onClick={ close }>
+                            <StyledLink href={`/dashboard/notes?folder=${ state.folderId }`}>
+                                Go to the folder.
+                            </StyledLink>
+                        </button>
                     </p>
                 )
             }
