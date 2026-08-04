@@ -3,6 +3,7 @@ import SideMenu from "@/components/layout/side-menu"
 import { getCurrentSession } from "@/lib/auth/session"
 import { redirect } from "next/navigation"
 import TopMenu from "@/components/layout/top-menu"
+import CurrentUser from "@/components/layout/current-user"
 
 const DashboardLayout = async ({ children }: { children: ReactNode }) => {
     const { user } = await getCurrentSession()
@@ -13,7 +14,7 @@ const DashboardLayout = async ({ children }: { children: ReactNode }) => {
 
     return (
         <div className="bg-foreground h-screen flex gap-5">
-            <SideMenu />
+            <SideMenu currentUserSlot={ <CurrentUser /> } />
 
             <main className="overflow-y-auto w-full py-4 pr-20">
                 <TopMenu />

@@ -4,10 +4,10 @@ import { PencilSquareIcon, CogIcon, Squares2X2Icon } from "@heroicons/react/24/o
 import logo from "@/assets/logo-colour.svg"
 import Image from "next/image";
 import MenuItem from "@/components/layout/menu-item"
-import CurrentUser from "@/components/layout/current-user"
 import SignOutItem from "@/components/layout/sign-out-item"
+import { ReactNode } from "react"
 
-const SideMenu = () => {
+const SideMenu = ({ currentUserSlot }: { currentUserSlot: ReactNode }) => {
     const items = [
         { name: "Dashboard", link: "/dashboard", icon: Squares2X2Icon},
         { name: "Notes", link: "/dashboard/notes", icon: PencilSquareIcon},
@@ -29,7 +29,7 @@ const SideMenu = () => {
                 </nav>
             </div>
 
-            <CurrentUser />
+            { currentUserSlot }
         </aside>
     )
 }
