@@ -24,7 +24,11 @@ const SidebarItem = ({ name, description, tags, isStarred, isCurrent=false, href
                 <h4 className="text-base flex items-center justify-between min-w-0">
                     <span className="truncate">{ name }</span>
 
-                    <Star isStarred={ isStarred } type={ type } id={ id } />
+                    {
+                        isStarred !== undefined && (
+                            <Star isStarred={ isStarred } type={ type } id={ id } />
+                        )
+                    }
                 </h4>
 
                 <p className="truncate text-sm">

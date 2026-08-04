@@ -1,6 +1,7 @@
 "use server"
 
 import prisma from "@/lib/prisma"
+import { getCurrentSession } from "@/lib/auth/session"
 
 const folderSelect = {
     id: true,
@@ -56,6 +57,16 @@ export const getFoldersByUser = async (userId: number): Promise<Folder[]> => {
     })
 
     return folders.map(mapFolder)
+}
+
+export const getFoldersForCurrentUser = async (): Promise<Folder[]> => {
+    const { user } = await getCurrentSession()
+
+    if (!user) {
+        return []
+    }
+
+    return getFoldersByUser(user.id)
 }
 
 export const getFolderById = async (id: number, userId: number): Promise<Folder | null> => {

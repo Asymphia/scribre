@@ -20,7 +20,7 @@ const Star = ({ id, type, isStarred }: { id: number, type: "folder" | "note", is
     return (
         <>
             {
-                isStarred ? <IconButton Icon={ StarIconSolid } onClick={ toggleStar } className="text-primary hover:text-primary-dark" /> : <IconButton Icon={ StarIcon } onClick={ toggleStar } />
+                isStarred ? <IconButton Icon={ StarIconSolid } onClick={ toggleStar } className="text-primary hover:text-primary-dark" /> : <IconButton Icon={ StarIcon } onClick={ toggleStar } className="text-text-color" />
             }
         </>
     )

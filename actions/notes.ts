@@ -13,13 +13,18 @@ import {
 } from "@/lib/dashboard/notes"
 import { getFolderById } from "@/lib/dashboard/folders"
 
-export type NoteFormState = { errors?: Record<string, string[]>, message?: string, success?: boolean } | undefined
+export type NoteFormState = {
+    errors?: Record<string, string[]>,
+    message?: string,
+    success?: boolean
+    folderId?: number
+} | undefined
 
 const noteSchema = z.object({
     folderId: z.coerce.number().int().positive("Select a folder"),
     title: z.string().min(1, "Enter a title").max(150, "Title is too long"),
     description: z.string().max(500, "Description is too long").default(""),
-    content: z.string().default(""),
+    content: z.string().nullish().transform(val => val ?? ""),
     tags: z.string().optional()
 })
 
@@ -63,7 +68,7 @@ export const createNote = async (_prevState: NoteFormState, formData: FormData):
 
     revalidatePath(`/notes/${note.id}`)
 
-    return { success: true, message: String(note.id) }
+    return { success: true, message: "Note created successfully", folderId: folder.id }
 }
 
 export const updateNote = async (id: number, _prevState: NoteFormState, formData: FormData): Promise<NoteFormState> => {
@@ -96,7 +101,7 @@ export const updateNote = async (id: number, _prevState: NoteFormState, formData
 
     revalidatePath(`/notes/${id}`)
 
-    return { success: true }
+    return { success: true, message: "Note updated successfully" }
 }
 
 export const toggleNoteStar = async (id: number): Promise<void> => {

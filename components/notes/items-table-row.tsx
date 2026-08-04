@@ -3,8 +3,9 @@ import SidebarItem from "@/components/notes/sidebar-item"
 import StyledTd from "@/components/notes/styled-td"
 import ItemTag from "@/components/notes/item-tag"
 import IconButton from "@/components/ui/icon-button"
-import { EllipsisVerticalIcon, StarIcon } from "@heroicons/react/24/outline"
-import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid"
+import { EllipsisVerticalIcon } from "@heroicons/react/24/outline"
+import { formatDate } from "@/lib/format-date"
+import Star from "@/components/notes/star"
 
 const ItemsTableRow = ({ item }: { item: Note }) => {
     return (
@@ -14,14 +15,14 @@ const ItemsTableRow = ({ item }: { item: Note }) => {
             </td>
 
             <StyledTd>
-                { item.createdAt.toString() }
+                { formatDate(item.createdAt) }
             </StyledTd>
 
             <StyledTd>
-                { item.updatedAt.toString() }
+                { formatDate(item.updatedAt) }
             </StyledTd>
 
-            <StyledTd className="justify-start">
+            <StyledTd>
                 {
                     item.tags.map((tag, index) => (
                         <ItemTag tag={ tag } key={`${tag}-${index}`} />
@@ -30,11 +31,7 @@ const ItemsTableRow = ({ item }: { item: Note }) => {
             </StyledTd>
 
             <StyledTd>
-                {
-                    item.isStarred
-                        ? <StarIconSolid className="size-5 text-primary" />
-                        : <StarIcon className="size-5 text-text-color" />
-                }
+                <Star id={ item.id } type="note" isStarred={ item.isStarred } />
             </StyledTd>
 
             <StyledTd>
