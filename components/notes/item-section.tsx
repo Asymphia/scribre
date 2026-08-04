@@ -25,12 +25,16 @@ const ItemSection = ({ title, Icon, items, current, type }: ItemSectionProps) =>
 
             <div className="min-w-0 space-y-1">
                 {
-                    items.map(item => (
-                        <SidebarItem name={item.title} description={item.description} tags={item.tags}
-                                     isStarred={item.isStarred} key={item.id} isCurrent={item.id === current.id}
-                                     href={`/dashboard/notes?folder=${item.id}`} id={ item.id } type={ type }
-                        />
-                    ))
+                    items.map(item => {
+                        const href = type === "folder" ? `/dashboard/notes?folder=${item.id}` : `/dashboard/notes/${item.id}`
+
+                        return (
+                            <SidebarItem name={item.title} description={item.description} tags={item.tags}
+                                         isStarred={item.isStarred} key={item.id} isCurrent={item.id === current.id}
+                                         href={ href } id={item.id} type={type}
+                            />
+                        )
+                    })
                 }
             </div>
         </div>
