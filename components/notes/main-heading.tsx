@@ -12,9 +12,10 @@ interface MainHeadingProps {
     tags?: string[]
     isStarred: boolean
     type?: "note" | "folder"
+    onEdit?: () => void
 }
 
-const MainHeading = ({ name, id, description, tags, isStarred, type="folder" }: MainHeadingProps) => {
+const MainHeading = ({ name, id, description, tags, isStarred, type="folder", onEdit }: MainHeadingProps) => {
     return (
         <div className="flex items-center justify-between">
             <div className="flex items-center gap-5">
@@ -40,7 +41,7 @@ const MainHeading = ({ name, id, description, tags, isStarred, type="folder" }: 
             </div>
 
             <div className="flex items-center gap-3">
-                <IconButton Icon={ PencilIcon } onClick={() => {}} />
+                <IconButton Icon={ PencilIcon } onClick={ onEdit ?? (() => {}) } />
 
                 {
                     type === "folder" && <IconButton Icon={ PlusIcon } onClick={() => {}} />

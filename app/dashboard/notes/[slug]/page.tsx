@@ -1,12 +1,10 @@
 import { notFound, redirect } from "next/navigation"
 import Card from "@/components/ui/card"
-import MainHeading from "@/components/notes/main-heading"
-import NoteContent from "@/components/notes/note-content"
 import NotesSidebar from "@/components/notes/notes-sidebar"
 import { getCurrentSession } from "@/lib/auth/session"
 import { getNoteById, getNotesFromFolder } from "@/lib/dashboard/notes"
 import { getFolderById } from "@/lib/dashboard/folders"
-import {type} from "node:os";
+import NoteDetail from "@/components/notes/note-detail"
 
 const SingleNotePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
     const { user } = await getCurrentSession()
@@ -53,16 +51,7 @@ const SingleNotePage = async ({ params }: { params: Promise<{ slug: string }> })
             />
 
             <Card>
-                <MainHeading
-                    name={ currentNote.title }
-                    description={ currentNote.description }
-                    tags={ currentNote.tags }
-                    isStarred={ currentNote.isStarred }
-                    type="note"
-                    id={ currentNote.id }
-                />
-
-                <NoteContent content={ currentNote.content } />
+                <NoteDetail note={ currentNote } />
             </Card>
         </>
     )

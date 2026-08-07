@@ -6,9 +6,10 @@ interface TextareaProps {
     disabled?: boolean
     onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void
     Icon: ComponentType<SVGProps<SVGSVGElement>>
+    defaultValue?: string
 }
 
-const Textarea = ({ placeholder, name, disabled=false, onChange, Icon }: TextareaProps) => {
+const Textarea = ({ placeholder, name, disabled=false, onChange, Icon, defaultValue }: TextareaProps) => {
     return (
         <label className="group flex flex-nowrap gap-3 items-start px-4 cursor-text bg-foreground w-full rounded-xl border-1 border-solid border-foreground transition-colors hover:border-text-color focus-within:border-primary!">
             <Icon className="size-5 text-text-color transition-colors group-focus-within:text-primary! mt-4" />
@@ -20,6 +21,7 @@ const Textarea = ({ placeholder, name, disabled=false, onChange, Icon }: Textare
                 onChange={ onChange }
                 rows={ 5 }
                 className="py-3.5 w-full focus:outline-none resize-none"
+                defaultValue={ defaultValue }
             />
         </label>
     )

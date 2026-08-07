@@ -11,9 +11,10 @@ interface InputProps {
     disabled?: boolean
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void
     Icon?: ComponentType<SVGProps<SVGSVGElement>>
+    defaultValue?: string
 }
 
-const Input = ({ type, placeholder, name, disabled=false, onChange, Icon }: InputProps) => {
+const Input = ({ type, placeholder, name, disabled=false, onChange, Icon, defaultValue }: InputProps) => {
     const [showPassword, setShowPassword] = useState<boolean>(false)
 
     const iconClasses = "size-5 text-text-color transition-colors group-focus-within:text-primary!"
@@ -38,6 +39,7 @@ const Input = ({ type, placeholder, name, disabled=false, onChange, Icon }: Inpu
                 name={ name }
                 className="py-4 w-full focus:outline-none"
                 onChange={ onChange }
+                defaultValue={ defaultValue }
             />
 
             {

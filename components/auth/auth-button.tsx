@@ -6,15 +6,16 @@ import { useFormStatus } from "react-dom"
 
 interface AuthButtonProps {
     text: string
+    className?: string
 }
 
-const AuthButton = ({ text }: AuthButtonProps) => {
+const AuthButton = ({ text, className }: AuthButtonProps) => {
     const { pending } = useFormStatus()
 
     return (
         <Button
             type="submit"
-            className={`flex flex-nowrap gap-3 w-full justify-center items-center group mt-10 ${ pending && "opacity-50 pointer-events-none" }`}
+            className={`flex flex-nowrap gap-3 w-full justify-center items-center group mt-10 ${ pending && "opacity-50 pointer-events-none" } ${ className }`}
             disabled={ pending }
         >
                 <span className="text-background">
