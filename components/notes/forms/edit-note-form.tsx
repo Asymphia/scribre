@@ -73,12 +73,12 @@ const EditNoteForm = ({ note, close }: { note: Note, close: () => void }) => {
             <ErrorMessages errors={ errors } />
 
             <div className="flex items-center justify-end gap-4 mt-10">
-                <AuthButton text="Save your note" className="mt-0! w-fit!" />
-
                 <Button onClick={ close } style="secondary" className="group">
                     Cancel
                     <XMarkIcon className="size-5 text-primary group-hover:text-primary-dark" />
                 </Button>
+
+                <AuthButton text="Save your note" className="mt-0! w-fit!" />
             </div>
         </form>
     )
