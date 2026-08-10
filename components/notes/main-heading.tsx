@@ -4,6 +4,9 @@ import ItemTag from "@/components/notes/item-tag"
 import IconButton from "@/components/ui/icon-button"
 import { PencilIcon, PlusIcon } from "@heroicons/react/24/outline"
 import Star from "@/components/notes/star"
+import { useState } from "react"
+import Modal from "@/components/ui/modal"
+import EditFolderForm from "@/components/notes/forms/edit-folder-form"
 
 interface MainHeadingProps {
     name: string
@@ -16,6 +19,16 @@ interface MainHeadingProps {
 }
 
 const MainHeading = ({ name, id, description, tags, isStarred, type="folder", onEdit }: MainHeadingProps) => {
+    const [isEditFolderModalVisible, setEditFolderModalVisible] = useState<boolean>(false)
+
+    const handleEditClick = () => {
+        if (type === "folder") {
+            setEditFolderModalVisible(true)
+        } else {
+            onEdit?.()
+        }
+    }
+
     return (
         <div className="flex items-center justify-between">
             <div className="flex items-center gap-5">
@@ -41,7 +54,7 @@ const MainHeading = ({ name, id, description, tags, isStarred, type="folder", on
             </div>
 
             <div className="flex items-center gap-3">
-                <IconButton Icon={ PencilIcon } onClick={ onEdit ?? (() => {}) } />
+                <IconButton Icon={ PencilIcon } onClick={ handleEditClick  } />
 
                 {
                     type === "folder" && <IconButton Icon={ PlusIcon } onClick={() => {}} />
@@ -49,6 +62,17 @@ const MainHeading = ({ name, id, description, tags, isStarred, type="folder", on
 
                 <Star isStarred={ isStarred } type={ type } id={ id } />
             </div>
+
+            {
+                type === "folder" && (
+                    <Modal text="Edit folder" className="w-140" onClick={ () => setEditFolderModalVisible(false) } visible={ isEditFolderModalVisible }>
+                        <EditFolderForm
+                            folder={{ id, title: name, description, tags }}
+                            close={ () => setEditFolderModalVisible(false) }
+                        />
+                    </Modal>
+                )
+            }
         </div>
     )
 }
