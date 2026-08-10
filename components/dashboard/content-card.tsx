@@ -11,7 +11,7 @@ interface ContentCardProps {
 const ContentCard = ({ Icon, title, subtitle, description }: ContentCardProps) => {
     return (
         <Card className="gap-1!">
-            <Icon className="size-8 text-primary mb-2" />
+            <Icon className="size-7 text-primary mb-2" />
 
             <h2 className="text-2xl">
                 { title }

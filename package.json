@@ -16,6 +16,7 @@
     "@oslojs/encoding": "^1.1.0",
     "@prisma/adapter-neon": "^7.5.0",
     "@prisma/client": "^7.5.0",
+    "chart.js": "^4.5.1",
     "katex": "^0.18.1",
     "mermaid": "^11.16.0",
     "next": "16.1.6",

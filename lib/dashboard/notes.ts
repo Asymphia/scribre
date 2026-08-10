@@ -50,6 +50,16 @@ export const getNotesFromFolder = async (folderId: number, userId: number): Prom
     return notes.map(mapNote)
 }
 
+export const getAllNotes = async (userId: number): Promise<Note[]> => {
+    const notes = await prisma.note.findMany({
+        where: { userId },
+        select: noteSelect,
+        orderBy: { updatedAt: "desc" }
+    })
+
+    return notes.map(mapNote)
+}
+
 export const getNoteById = async (id: number, userId: number): Promise<Note | null> => {
     const note = await prisma.note.findFirst({
         where: { id, userId },
