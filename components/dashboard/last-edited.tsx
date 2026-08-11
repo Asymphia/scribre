@@ -3,7 +3,7 @@ import { Folder } from "@/lib/dashboard/folders"
 import Card from "@/components/ui/card"
 import SidebarItem from "@/components/notes/sidebar-item"
 import Button from "@/components/ui/button"
-import { FolderIcon, PencilIcon } from "@heroicons/react/24/outline"
+import { ArrowUpRightIcon } from "@heroicons/react/24/outline"
 
 interface LastEditedProps {
     type: "note" | "folder"
@@ -11,10 +11,8 @@ interface LastEditedProps {
 }
 
 const LastEdited = ({ type, items }: LastEditedProps) => {
-    const iconStyle = "size-5 text-primary transition-all group-hover:text-primary-dark"
-
     return (
-        <Card className="gap-7!">
+        <Card className="gap-6.5!">
             <h2 className="text-2xl">
                 Your last edited {" "}
                 {
@@ -41,11 +39,9 @@ const LastEdited = ({ type, items }: LastEditedProps) => {
             </div>
 
             <Button style="secondary" className="group justify-center">
-                {
-                    type === "folder" ? <FolderIcon className={ iconStyle } /> : <PencilIcon className={ iconStyle } />
-                }
-
                 View all
+
+                <ArrowUpRightIcon className="size-5 text-primary transition-all group-hover:text-primary-dark" />
             </Button>
         </Card>
     )

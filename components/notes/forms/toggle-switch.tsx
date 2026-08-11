@@ -28,7 +28,7 @@ const ToggleSwitch = <T extends string>({ value, onChange, options }: ToggleSwit
                         type="button"
                         onClick={ () => onChange(option.value) }
                         className={`relative z-10 px-4 py-1.5 rounded-full transition-colors whitespace-nowrap ${
-                            option.value === value ? "text-white" : "cursor-pointer hover:text-text-color"
+                            option.value === value ? "text-white" : "cursor-pointer hover:text-primary active:text-primary-dark"
                         }`}
                     >
                         { option.label }

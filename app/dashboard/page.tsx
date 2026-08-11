@@ -5,9 +5,12 @@ import { redirect } from "next/navigation"
 import { getFoldersByUser } from "@/lib/dashboard/folders"
 import LastEdited from "@/components/dashboard/last-edited"
 import NotesTrendChart from "@/components/layout/charts/notes-trend-chart"
-import ActivityChart from "@/components/layout/charts/activity-chart";
-import TagChart from "@/components/layout/charts/tags-chart";
-import EditorUsageChart from "@/components/layout/charts/editor-usage-chart";
+import ActivityChart from "@/components/layout/charts/activity-chart"
+import TagChart from "@/components/layout/charts/tags-chart"
+import EditorUsageChart from "@/components/layout/charts/editor-usage-chart"
+import ContentCard from "@/components/dashboard/content-card"
+import { ClipboardDocumentIcon, CalendarIcon } from "@heroicons/react/24/outline"
+import Changelog from "@/components/dashboard/changelog"
 
 const DashboardPage = async () => {
     const { user } = await getCurrentSession()
@@ -19,8 +22,8 @@ const DashboardPage = async () => {
     const allNotes = await getAllNotes(user.id)
     const allFolders = await getFoldersByUser(user.id)
 
-    const lastNotes = allNotes.sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime()).slice(0, 5)
-    const lastFolders = allFolders.sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime()).slice(0, 5)
+    const lastNotes = allNotes.sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime()).slice(0, 7)
+    const lastFolders = allFolders.sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime()).slice(0, 7)
 
     return (
         <>
@@ -63,6 +66,26 @@ const DashboardPage = async () => {
                                 { feature: "Links", percentage: 64 },
                             ]}
                         />
+                    </div>
+
+                    <div className="grid grid-cols-[1fr_1.5fr] gap-5 items-start">
+                        <div className="space-y-5">
+                            <ContentCard
+                                Icon={ ClipboardDocumentIcon }
+                                title="Continue work"
+                                subtitle="You left your “XYZ” note. Go back and finish your thoughts."
+                                href="#"
+                            />
+
+                            <ContentCard
+                                Icon={ CalendarIcon }
+                                title="Dust on the note"
+                                subtitle="You haven’t open “XYZ” note for 34 days. Maybe it’s time to go back to it?"
+                                href="#"
+                            />
+                        </div>
+
+                        <Changelog />
                     </div>
                 </div>
             </div>
